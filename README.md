@@ -1,13 +1,13 @@
 # LocalStack Workbench
 AWS Infrastructure Development environment based on LocalStack, Webtop, Jenkins for mocking AWS IaC with terraform
 
-LocalStack allows the simulation of an AWS Account with a lot of services supported (including setting up K8s workloads in EKS) for local mocking of setup of Infrastructure.
+"[LocalStack](https://www.localstack.cloud)" allows the simulation of an AWS Account with a lot of services supported (including setting up K8s workloads in EKS) for local mocking of setup of Infrastructure.
 
-The environment provided in this repo can be used to provide a basic toolset to developers to easy start over with Terraform IaC development.
+The environment provided in this repo can be used as a basic toolset for developers to easy start over with Terraform IaC development for AWS.
 
-"Webtop" is used as a Linux Desktop with KDE as Desktop environment and aws, terraform and Visual Studio Code preinstalled.
+"[Webtop](https://docs.linuxserver.io/images/docker-webtop/)" is used as a Linux Desktop with KDE as Desktop environment with aws, terraform and Visual Studio Code getting preinstalled when setting up the Workbench.
 
-Additionally Jenkins is started to enable configuration of IaC code pipelines.
+Additionally a Jenkins container is getting started to support setting up IaC code pipelines.
 
 
 ## Prerequisites
@@ -24,7 +24,9 @@ After the script finished setting up all components, setup of Jenkins needs to b
 Further hints on Jenkins you can find below.
 
 ## Use
-- Open http://localhost:3000 to access LocalStack Webtop
+- Open http://localhost:3000 to access LocalStack Webtop:
+
+![Webtop](resources/webtop.jpg)
 
 Available Toolset:
 - aws
