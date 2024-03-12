@@ -1,6 +1,7 @@
+# docker volumes
+**/volumes/*
 # Local .terraform directories
 **/.terraform/*
-
 # .tfstate files
 *.tfstate
 *.tfstate.*

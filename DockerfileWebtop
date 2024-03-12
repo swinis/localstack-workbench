@@ -1,0 +1,7 @@
+FROM lscr.io/linuxserver/webtop:ubuntu-kde
+USER root
+WORKDIR /config
+
+COPY configs/webtop/* /config
+RUN chmod 755 /config/setup.sh
+RUN /config/setup.sh

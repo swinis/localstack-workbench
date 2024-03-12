@@ -1,0 +1,79 @@
+version: "3.8"
+
+services:
+  localstack:
+    container_name: localstack-main
+    image: localstack/localstack-pro
+    ports:
+      - "0.0.0.0:4566:4566"             # LocalStack Gateway    
+      - "0.0.0.0:4510-4559:4510-4559"   # external service port range
+      - "0.0.0.0:443:443"               # LocalStack HTTPS Gateway
+    environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+    volumes:
+      - "./volumes/localstack:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      lsworkbench:
+        ipv4_address: 10.0.2.20
+    restart: unless-stopped
+
+  jenkins:
+    container_name: jenkins
+    build:
+      context: .
+      dockerfile: DockerfileJenkins
+    restart: always
+    privileged: true
+    user: root
+    networks:
+      - lsworkbench
+    dns: 10.0.2.20
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - ./volumes/jenkins:/var/jenkins_home
+      - ./configs/jenkins/terraform:/opt/terraform
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  webtop:
+    build:
+      context: .
+      dockerfile: DockerfileWebtop
+    container_name: webtop
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - SUBFOLDER=/
+      - TITLE=LocalStack Webtop 
+    volumes:
+      - ./volumes/webtop:/config
+      - ./configs/webtop/aws:/config/.aws
+      - ./configs/webtop/bashrc:/config/.bashrc
+      - ./configs/webtop/Desktop/Jenkins:/config/Desktop/Jenkins
+      - /var/run/docker.sock:/var/run/docker.sock 
+    networks:
+      - lsworkbench
+    dns: 10.0.2.20
+    ports:
+      # workbench will be accessible via http://localhost:30000
+      - 3000:3000
+      - 3001:3001
+# can be enabled on linux hosts to speed up things a bit:
+#    devices:
+#      - /dev/dri:/dev/dri #optional
+    shm_size: "1gb"
+    restart: unless-stopped
+
+networks:
+  lsworkbench:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.2.0/24
+          
