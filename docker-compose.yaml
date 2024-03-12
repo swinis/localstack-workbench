@@ -23,7 +23,6 @@ services:
     build:
       context: .
       dockerfile: DockerfileJenkins
-    restart: always
     privileged: true
     user: root
     networks:
