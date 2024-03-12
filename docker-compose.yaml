@@ -33,7 +33,7 @@ services:
       - 50000:50000
     volumes:
       - ./volumes/jenkins:/var/jenkins_home
-      - ./configs/jenkins/terraform:/opt/terraform
+      - ./configs/jenkins/terraform:/opt/terraform/terraform
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
 
