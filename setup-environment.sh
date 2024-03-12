@@ -30,5 +30,7 @@ echo 'Setup is finished, you can reach:'
 echo '   - Webtop URL:  http://localhost:3000'
 echo '   - Jenkins URL: http://localhost:8080 (or use Jenkins Desktop icon in Webtop)'
 echo $'\n'
-echo 'To finish the setup of Jenkins, open Jenkins URL and use initialAdminPassword as follows:'
+echo 'To finish the setup of Jenkins, open Jenkins URL and use initialAdminPassword as follows:
+(The passwordfile will be created while first startup of jenkins, please be patient for another 30 seconds to get it displayed):'
+sleep 30
 cat ./volumes/jenkins/secrets/initialAdminPassword
