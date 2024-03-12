@@ -1,0 +1,5 @@
+[profile default]
+region=us-east-1
+output=json
+endpoint_url = http://localhost.localstack.cloud:4566
+
