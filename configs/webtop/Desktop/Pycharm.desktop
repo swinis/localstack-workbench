@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[en_US]=
+Comment=
+Exec=/opt/pycharm-community-2023.3.4/bin/pycharm.sh
+GenericName[en_US]=
+GenericName=
+Icon=/opt/pycharm-community-2023.3.4/bin/pycharm.png
+MimeType=
+Name[en_US]=PyCharm
+Name=PyCharm
+Path=/config
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
