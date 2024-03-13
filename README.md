@@ -113,5 +113,21 @@ Basically terraform can be used to set up resources in localstack. But using ter
 Therefore LocalStack tflocal wrapper script (terraform-local) can be used to overcome this restriction (see example pipeline).
 
 
-# Todo
-- Jenkins: preinstall terraform in Jenkins container automatically via Dockerfile
+# Changelog
+#### 12.03.2024 (swinis) v0.1
+
+Initial Commit with:
+- LocalStack
+- Jenkins
+- WebTop
+
+#### 13.03.20224 (swinis) v0.2
+
+Added tools to Webtop:
+- PyCharm IDE
+- OpenLens
+- kubectl, kubectx, kubens
+- flux, helm
+
+
+
