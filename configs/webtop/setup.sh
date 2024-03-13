@@ -5,6 +5,11 @@ apt-get update
 # install basics
 apt-get install -y dialog inetutils-ping wget neovim python3-pip
 apt-get install -y gnupg software-properties-common
+apt-get install -y apt-transport-https ca-certificates curl
+
+# add kubectl repositroy to apt source
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 # add hashicorp repository to apt sources 
 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | \
@@ -36,3 +41,13 @@ apt-get install -y code
 # install PyCharm
 wget https://download.jetbrains.com/python/pycharm-community-2023.3.4-$(uname -i).tar.gz && \
 tar xzvf pycharm-community-2023.3.4-$(uname -i).tar.gz -C /opt/
+
+# install K8s tools OpenLens, kubectl, kubectx, kubens
+apt-get install -y libnotify4
+wget https://github.com/MuhammedKalkan/OpenLens/releases/download/v6.5.2-366/OpenLens-6.5.2-366.arm64.deb
+dpkg -i OpenLens-6.5.2-366.arm64.deb
+apt-get install -y kubectl
+
+sudo git clone https://github.com/ahmetb/kubectx /usr/local/kubectx
+sudo ln -s /usr/local/kubectx/kubectx /usr/local/bin/kubectx
+sudo ln -s /usr/local/kubectx/kubens /usr/local/bin/kubens

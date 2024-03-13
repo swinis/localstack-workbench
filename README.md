@@ -40,7 +40,8 @@ Available Toolset:
 - terraform
 - Visual Studio Code
 - JetBrains PyCharm Community Edition
-- pipx is preinstalled in Jenkins to allow, e.g. to install terraform-local or other python based tools
+- OpenLens
+- kubectl, kubectx, kubens
 
 Recommended Plugins for installed IDEs:
 - Terraform and HCL
@@ -50,6 +51,8 @@ Recommended Plugins for installed IDEs:
 ## Jenkins
 Jenkins is installed to allow to set up IaC via terraform automatically via pipeline. Terraform (as arm64 binary) is preinstalled in /opt directory. If the binary does not fit the actual architecture, just replace it in the repos ./configs/jenkins directory with the one fitting your needs.
 
+### installed software
+- pipx is preinstalled in Jenkins to allow, e.g. to install terraform-local or other python based tools
 
 ### recommended Plugins and tools:
 - Terraform plugin
