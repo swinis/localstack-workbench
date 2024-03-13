@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=OpenLens
+Exec=/opt/OpenLens/open-lens %U
+Terminal=false
+Type=Application
+Icon=open-lens
+StartupWMClass=OpenLens
+Comment=OpenLens - Open Source IDE for Kubernetes
+MimeType=x-scheme-handler/lens;
+Categories=Network;

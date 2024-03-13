@@ -42,6 +42,7 @@ Available Toolset:
 - JetBrains PyCharm Community Edition
 - OpenLens
 - kubectl, kubectx, kubens
+- flux, helm
 
 Recommended Plugins for installed IDEs:
 - Terraform and HCL
