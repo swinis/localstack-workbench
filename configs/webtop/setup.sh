@@ -48,6 +48,6 @@ wget https://github.com/MuhammedKalkan/OpenLens/releases/download/v6.5.2-366/Ope
 dpkg -i OpenLens-6.5.2-366.arm64.deb
 apt-get install -y kubectl
 
-sudo git clone https://github.com/ahmetb/kubectx /usr/local/kubectx
-sudo ln -s /usr/local/kubectx/kubectx /usr/local/bin/kubectx
-sudo ln -s /usr/local/kubectx/kubens /usr/local/bin/kubens
+git clone https://github.com/ahmetb/kubectx /usr/local/kubectx
+ln -s /usr/local/kubectx/kubectx /usr/local/bin/kubectx
+ln -s /usr/local/kubectx/kubens /usr/local/bin/kubens
