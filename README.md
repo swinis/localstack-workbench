@@ -1,13 +1,19 @@
 # LocalStack Workbench
 AWS Infrastructure Development environment based on LocalStack, Webtop, Jenkins for mocking AWS IaC with terraform
 
-"[LocalStack](https://www.localstack.cloud)" allows the simulation of an AWS Account with a lot of services supported (including setting up K8s workloads in EKS) for local mocking of setup of Infrastructure.
 
-The environment provided in this repo can be used as a basic toolset for developers to easy start over with Terraform IaC development for AWS.
+The components provided in this repo can be used as a full development environment to easy start over with Terraform IaC development for a locally mocked AWS account. No need to have access to an actual AWS Account.
 
-"[Webtop](https://docs.linuxserver.io/images/docker-webtop/)" is used as a Linux Desktop with KDE as Desktop environment with aws, terraform and Visual Studio Code getting preinstalled when setting up the Workbench.
+[Webtop](https://docs.linuxserver.io/images/docker-webtop/) is used as a KDE based Linux Desktop coming with:
+- AWS and IaC CLI tools
+- IDEs
 
-Additionally a Jenkins container is getting started to support setting up IaC code pipelines.
+A full list of provided tools can be found in the section "Using the Workbench"
+
+[Jenkins](https://www.jenkins.io) container is provided and can be used, eg. for setting up IaC implementation pipelines.
+
+[LocalStack](https://www.localstack.cloud) allows the local simulation of an AWS Account with quite a hugh no. of services supported (even including setting up K8s workloads in EKS) for local mocking of setup of Infrastructure.
+
 
 
 ## Prerequisites
@@ -23,16 +29,23 @@ Additionally a Jenkins container is getting started to support setting up IaC co
 After the script finished setting up all components, setup of Jenkins needs to be finished. The needed InitialAdminPassword is provided by the installer script
 Further hints on Jenkins you can find below.
 
-## Use
+## Using the Workbench
 - Open http://localhost:3000 to access LocalStack Webtop:
 
-![Webtop](resources/webtop.jpg)
+![Webtop](resources/webtop.png)
 
 Available Toolset:
+- git
 - aws
 - terraform
 - Visual Studio Code
+- JetBrains PyCharm Community Edition
 - pipx is preinstalled in Jenkins to allow, e.g. to install terraform-local or other python based tools
+
+Recommended Plugins for installed IDEs:
+- Terraform and HCL
+- Docker
+- AWS Toolkit (Amazon Q, Code Whisperer)
 
 ## Jenkins
 Jenkins is installed to allow to set up IaC via terraform automatically via pipeline. Terraform (as arm64 binary) is preinstalled in /opt directory. If the binary does not fit the actual architecture, just replace it in the repos ./configs/jenkins directory with the one fitting your needs.
@@ -97,4 +110,4 @@ Therefore LocalStack tflocal wrapper script (terraform-local) can be used to ove
 
 
 # Todo
-- preinstall terraform in Jenkins container automatically via Dockerfile
+- Jenkins: preinstall terraform in Jenkins container automatically via Dockerfile

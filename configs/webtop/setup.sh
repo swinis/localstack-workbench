@@ -32,3 +32,7 @@ pip install awsume
 
 # install Visual Studio Code as IDE
 apt-get install -y code
+
+# install PyCharm
+wget https://download.jetbrains.com/python/pycharm-community-2023.3.4-$(uname -i).tar.gz && \
+tar xzvf pycharm-community-2023.3.4-$(uname -i).tar.gz -C /opt/

@@ -55,6 +55,7 @@ services:
       - ./configs/webtop/aws:/config/.aws
       - ./configs/webtop/bashrc:/config/.bashrc
       - ./configs/webtop/Desktop/Jenkins:/config/Desktop/Jenkins
+      - ./configs/webtop/Desktop/Pycharm.desktop:/config/Desktop/Pycharm.desktop
       - /var/run/docker.sock:/var/run/docker.sock 
     networks:
       - lsworkbench
