@@ -1,3 +1,6 @@
+# IDE
+**/.idea/*
+
 # docker volumes
 **/volumes/*
 # Local .terraform directories

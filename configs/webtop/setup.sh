@@ -38,6 +38,7 @@ apt-get update
 apt-get install -y awscli
 apt-get install -y terraform
 pip install awsume
+pip install terraform-local
 
 # install Visual Studio Code as IDE
 apt-get install -y code
