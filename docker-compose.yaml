@@ -28,6 +28,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - CUSTOM_USER=lswebtop
       - TZ=Etc/UTC
       - SUBFOLDER=/
       - TITLE=LocalStack Webtop 
@@ -36,6 +37,8 @@ services:
       - ./configs/webtop/aws:/config/.aws
       - ./configs/webtop/bashrc:/config/.bashrc
       - ./configs/webtop/Desktop/Jenkins:/config/Desktop/Jenkins
+      - ./configs/webtop/Desktop/Keycloak:/config/Desktop/Keycloak
+      - ./configs/webtop/Desktop/Keycloak:/config/Desktop/OpenLDAP_UI
       - ./configs/webtop/Desktop/Pycharm.desktop:/config/Desktop/Pycharm.desktop
       - ./configs/webtop/Desktop/open-lens.desktop:/config/Desktop/open-lens.desktop
       - /var/run/docker.sock:/var/run/docker.sock 

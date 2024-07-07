@@ -18,16 +18,22 @@ if [ "$REPLY" != "yes" ]; then
     exit
 fi
 
-echo 'Ok, Lets go for it...'
+echo 'Ok, then - go, go, go ...'
 
 export LOCALSTACK_AUTH_TOKEN
+
+# workaround to get aws-cli installed on webtop, as downloading from within container
+# does no work with the latest version of webtop:ubuntu-kde
+
+mkdir -p ./volumes/webtop/Downloads/
+curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "./volumes/webtop/Downloads/awscliv2.zip"
 
 docker-compose -f docker-compose.yaml up -d
 docker-compose -f docker-compose-ci.yaml up -d
 
 echo $'\n'
 echo $'\n'
-echo 'Setup is finished, you can reach:'
+echo 'Setup is finished, you can access:'
 echo '   - Webtop URL:  http://localhost:3000'
 echo '   - From within Webtop:'
 echo '       - Jenkins URL: http://jenkins:8080 (or use Jenkins Desktop icon in Webtop)'
