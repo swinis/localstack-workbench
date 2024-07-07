@@ -35,9 +35,15 @@ sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packag
 apt-get update
 
 # Cloud and IaC stuff
-apt-get install -y awscli
+# apt-get install -y awscli
+# as not available for lastest webtop:ubuntu-kde, will be pre-downloaded by setup-environment.sh...
+unzip /config/Downloads/awscliv2.zip -d /config/Downloads/
+/config/Downloads/aws/install
+
 apt-get install -y terraform
-pip install awsume
+pip install awsume --break-system-packages
+pip install terraform-local --break-system-packages
+
 
 # install Visual Studio Code as IDE
 apt-get install -y code
