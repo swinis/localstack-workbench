@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   localstack:
     container_name: localstack-main
@@ -28,17 +26,19 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - CUSTOM_USER=lswebtop
+      - CUSTOM_USER=lswb
       - TZ=Etc/UTC
       - SUBFOLDER=/
-      - TITLE=LocalStack Webtop 
+      - TITLE=LocalStack Workbench
     volumes:
       - ./volumes/webtop:/config
       - ./configs/webtop/aws:/config/.aws
       - ./configs/webtop/bashrc:/config/.bashrc
-      - ./configs/webtop/Desktop/Jenkins:/config/Desktop/Jenkins
-      - ./configs/webtop/Desktop/Keycloak:/config/Desktop/Keycloak
-      - ./configs/webtop/Desktop/Keycloak:/config/Desktop/OpenLDAP_UI
+      - ./configs/webtop/Desktop/Jenkins.desktop:/config/Desktop/Jenkins.desktop
+      - ./configs/webtop/Desktop/KeyCloak.desktop:/config/Desktop/KeyCloak.desktop
+      - ./configs/webtop/Desktop/OpenLDAP-UI.desktop:/config/Desktop/OpenLDAP-UI.desktop
+      - ./configs/webtop/Desktop/Docmost.desktop:/config/Desktop/Docmost.desktop
+      - ./configs/webtop/Desktop/PGAdmin4.desktop:/config/Desktop/PGAdmin4.desktop
       - ./configs/webtop/Desktop/Pycharm.desktop:/config/Desktop/Pycharm.desktop
       - ./configs/webtop/Desktop/open-lens.desktop:/config/Desktop/open-lens.desktop
       - /var/run/docker.sock:/var/run/docker.sock 
@@ -46,7 +46,6 @@ services:
       - lsworkbench
     dns: 10.0.2.20
     ports:
-      # workbench will be accessible via http://localhost:30000
       - 3000:3000
       - 3001:3001
 # can be enabled on linux hosts to speed up things a bit:

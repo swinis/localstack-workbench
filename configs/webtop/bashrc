@@ -14,5 +14,4 @@ _awsume() {
 complete -F _awsume awsume
 
 export PATH=$PATH:/config/.local/bin
-
 export PATH="$HOME/.local/bin:$PATH"

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Icon=text-html
+Name=KeyCloak
+Type=Link
+URL[$e]=http://keycloak:8080
