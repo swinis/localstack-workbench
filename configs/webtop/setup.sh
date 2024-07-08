@@ -37,6 +37,7 @@ apt-get update
 # Cloud and IaC stuff
 # apt-get install -y awscli
 # as not available for lastest webtop:ubuntu-kde, will be pre-downloaded by setup-environment.sh...
+apt-get install -y unzip
 unzip /config/Downloads/awscliv2.zip -d /config/Downloads/
 /config/Downloads/aws/install
 

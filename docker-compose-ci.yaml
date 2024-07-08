@@ -1,95 +1,7 @@
-version: "3.8"
-
 services:
-  postgresql:
-    container_name: postgres
-    image: docker.io/bitnami/postgresql:latest
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-      - POSTGRESQL_USERNAME=keycloak_user
-      - POSTGRESQL_DATABASE=keycloak_db
-    volumes:
-      - "./volumes/postgresql_data:/bitnami/postgresql"
-    networks:
-      - lsworkbench
-    dns: 10.0.2.20
-  openldap:
-    container_name: openldap
-    #platform: linux/amd64
-    # https://github.com/osixia/docker-openldap
-    image: osixia/openldap:1.5.0
-    ports:
-      - '389:389'
-      - '636:636'
-    environment:
-      - LDAP_ORGANISATION=localstackwb
-      - LDAP_DOMAIN=home.local
-      - LDAP_ADMIN_PASSWORD=admin
-      - LDAP_CONFIG_PASSWORD=config
-      - LDAP_RFC2307BIS_SCHEMA=true
-      - LDAP_TLS=true
-      - LDAP_TLS_ENFORCE=false
-      - LDAP_TLS_CA_CRT_FILENAME=ca.crt
-      - LDAP_TLS_CRT_FILENAME=openldap.crt
-      - LDAP_TLS_KEY_FILENAME=openldap.key
-      - LDAP_TLS_VERIFY_CLIENT=try
-    networks:
-      - lsworkbench
-    dns: 10.0.2.20
-    volumes:
-      - './volumes/openldap/data:/var/lib/ldap'
-      - './volumes/openldap/slapd.d:/etc/ldap/slapd.d'
-      - './configs/openldap/certs:/container/service/slapd/assets/certs'
-  openldap-ui:
-    image: wheelybird/ldap-user-manager:latest
-    container_name: openldap-ui
-    environment:
-      - LDAP_URI=ldaps://openldap:636
-      - LDAP_BASE_DN=dc=home,dc=local
-      - LDAP_REQUIRE_STARTTLS=TRUE
-      - LDAP_ADMINS_GROUP=admins
-      - LDAP_ADMIN_BIND_DN=cn=admin,dc=home,dc=local
-      - LDAP_ADMIN_BIND_PWD=admin
-      - LDAP_IGNORE_CERT_ERRORS=true
-      - LDAP_TLS_CACERT_FILE=/opt/certs/ca.crt
-      - LDAP_USER_OU=users
-      - LDAP_DEBUG=TRUE
-      #- LDAP_VERBOSE_CONNECTION_LOGS=TRUE
-      - FORCE_RFC2307BIS=TRUE
-      #- SHOW_POSIX_ATTRIBUTES=FALSE
-      - NO_HTTPS=TRUE
-      - PASSWORD_HASH=SSHA
-      - SERVER_HOSTNAME=openldap-ui
-      - SERVER_PORT=18080
-    volumes:
-      - './configs/openldap/certs:/opt/certs'
-    depends_on:
-      - openldap
-    ports:
-      - 18080:18080
-    networks:
-      - lsworkbench
-    dns: 10.0.2.20
-  keycloak:
-    container_name: keycloak
-    image: docker.io/bitnami/keycloak:latest
-    networks:
-      - lsworkbench
-    dns: 10.0.2.20
-#    ports:
-#	port not exposed to outside lsworkbench network
-#      - "8080:8080"
-    environment:
-      - KEYCLOAK_CREATE_ADMIN_USER=true
-      # default values, added for better understanding only
-      - KEYCLOAK_ADMIN=user
-      - KEYCLOAK_ADMIN_PASSWORD=bitnami
-      - KEYCLOAK_DATABASE_USER=keycloak_user
-      - KEYCLOAK_DATABASE_NAME=keycloak_db
-    depends_on:
-      - postgresql
   jenkins:
     container_name: jenkins
+    restart: unless-stopped
     build:
       context: .
       dockerfile: DockerfileJenkins
@@ -99,14 +11,12 @@ services:
       - lsworkbench
     dns: 10.0.2.20
 #    ports:
-# 	no ports exposed to outside lsworkbench network
 #      - 8880:8080
 #      - 50000:50000
     volumes:
       - ./volumes/jenkins:/var/jenkins_home
       - ./configs/jenkins/terraform:/opt/terraform/terraform
       - /var/run/docker.sock:/var/run/docker.sock
-    restart: unless-stopped
 
 networks:
   lsworkbench:

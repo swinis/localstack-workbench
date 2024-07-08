@@ -1,4 +1,5 @@
 [Desktop Entry]
 Icon=text-html
+Name=Jenkins
 Type=Link
-URL[$e]=http://openldap-ui:18080/
+URL[$e]=http://jenkins:8080

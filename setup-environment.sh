@@ -29,6 +29,7 @@ mkdir -p ./volumes/webtop/Downloads/
 curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "./volumes/webtop/Downloads/awscliv2.zip"
 
 docker-compose -f docker-compose.yaml up -d
+docker-compose -f docker-compose-enabling.yaml up -d
 docker-compose -f docker-compose-ci.yaml up -d
 
 echo $'\n'

@@ -1,4 +1,5 @@
 [Desktop Entry]
 Icon=text-html
+Name=PGAdmin4
 Type=Link
-URL[$e]=http://jenkins:8080
+URL[$e]=http://pgadmin

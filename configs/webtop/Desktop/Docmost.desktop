@@ -1,4 +1,5 @@
 [Desktop Entry]
 Icon=text-html
+Name=Docmost
 Type=Link
-URL[$e]=http://openldap-ui:18080
+URL[$e]=http://docmost:3000
