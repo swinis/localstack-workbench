@@ -1,0 +1,49 @@
+services:
+  redmine:
+    container_name: redmine
+    restart: unless-stopped
+    depends_on:
+      - postgresql
+    image: bitnami/redmine:5.1.3
+    environment:
+      - REDMINE_USERNAME=admin
+      - REDMINE_PASSWORD=im-local-admin
+      - READMIN_PORT_NUMBER=3000
+      - REDMINE_DATABASE_TYPE=postgresql
+      - REDMINE_DATABASE_HOST=postgres
+      - REDMINE_DATABASE_PORT_NUMBER=5432
+      - REDMINE_DATABASE_NAME=redmine
+      - REDMINE_DATABASE_USER=postgres
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDMINE_PLUGINS_MIGRATE=true
+    networks:
+      - lsworkbench
+    dns: 10.0.2.20
+    volumes:
+      - './volumes/redmine/data:/bitnami/redmine'
+      - './configs/redmine/:/config'
+  docmost:
+    container_name: docmost
+    restart: unless-stopped
+    depends_on:
+      - postgresql
+      - redis
+    image: docmost/docmost:0.2.5
+    ports:
+      - '3080:3000'
+    environment:
+      APP_URL: "http://docmost"
+      APP_SECRET: "MYOWNCUSTOMLSWORKBENCHSECRET"
+      DATABASE_URL: "postgresql://postgres:postgres@postgresql:5432/docmost?schema=public"
+      REDIS_URL: "redis://redis:6379"
+    networks:
+      - lsworkbench
+    dns: 10.0.2.20
+    volumes:
+      - './volumes/docmost/data:/app/data/storage'
+
+networks:
+  lsworkbench:
+    # is defined in main docker-compose.yaml
+    external: true
+    name: lsworkbench

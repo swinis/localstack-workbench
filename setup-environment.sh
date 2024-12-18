@@ -28,9 +28,13 @@ export LOCALSTACK_AUTH_TOKEN
 mkdir -p ./volumes/webtop/Downloads/
 curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "./volumes/webtop/Downloads/awscliv2.zip"
 
-docker-compose -f docker-compose.yaml up -d
-docker-compose -f docker-compose-enabling.yaml up -d
-docker-compose -f docker-compose-ci.yaml up -d
+docker compose -f docker-compose-base.yaml up -d
+docker compose -f docker-compose-enabling.yaml up -d
+
+./setup-documentation.sh
+
+docker compose -f docker-compose-ci.yaml up -d
+
 
 echo $'\n'
 echo $'\n'

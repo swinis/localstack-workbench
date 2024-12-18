@@ -65,3 +65,6 @@ ln -s /usr/local/kubectx/kubens /usr/local/bin/kubens
 
 apt-get install -y helm
 curl -s https://fluxcd.io/install.sh | bash
+
+# install ZED IDE
+sudo curl https://zed.dev/install.sh | sh

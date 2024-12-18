@@ -1,0 +1,8 @@
+FROM bitnami/redmine:5.1.3
+
+USER root
+WORKDIR /config-container
+
+COPY configs/redmine/* /config-container
+RUN chmod 755 /config-container/setup.sh
+RUN /config-container/setup.sh
